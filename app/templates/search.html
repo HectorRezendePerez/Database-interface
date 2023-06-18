@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tela de Pesquisa</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('https://anaclaudiathorpe.ne10.uol.com.br/wp-content/uploads/2023/03/audi-rs6-avant-performance-1-1140x641.jpg');
+      background-size: cover;
+      background-position: unset;
+    }
+    /* Estilos CSS aqui */
+    .search-container {
+      width: 300px;
+      margin: 0 auto;
+      margin-top: 100px;
+      background-color: rgba(100, 100, 100, 0.5);
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 100px rgba(0, 0, 0, 1);
+    }
+
+    .search-container h2 {
+      text-align: center;
+    }
+
+    .search-container label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .search-container select,
+    .search-container input[type="text"],
+    .search-container input[type="number"] {
+      width: 93%;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+
+    .search-container input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #342641;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="search-container">
+    <h2>Pesquisa de Veículos</h2>
+    <form action="/search" method="POST">
+      <label for="marca">Marca:</label>
+      <input type="text" id="marca" name="marca">
+
+      <label for="modelo">Modelo:</label>
+      <input type="text" id="modelo" name="modelo">
+
+      <label for="ano-inicial">Ano Inicial:</label>
+      <select id="ano-inicial" name="ano-inicial">
+        <option value="">Selecione o ano</option>
+        <!-- Loop para gerar as opções de anos -->
+        {% for year in range(1950, 2024) %}
+          <option value="{{ year }}">{{ year }}</option>
+        {% endfor %}
+      </select>
+
+      <label for="ano-final">Ano Final:</label>
+      <select id="ano-final" name="ano-final">
+        <option value="">Selecione o ano</option>
+        <!-- Loop para gerar as opções de anos -->
+        {% for year in range(1950, 2024) %}
+          <option value="{{ year }}">{{ year }}</option>
+        {% endfor %}
+      </select>
+      <input type="submit" value="Pesquisar">
+    </form>
+  </div>
+</body>
+</html>

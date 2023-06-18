@@ -1,0 +1,38 @@
+# Arquivos de ambiente e dependências
+.env
+.env.*
+
+# Arquivos gerados por ferramentas de desenvolvimento
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+env/
+env.bak/
+env1/
+venv1/
+*.venv
+*.venv.*
+
+# Arquivos de log
+*.log
+logs/
+
+# Arquivos de backup e caches
+*.bak
+*.swp
+*~
+
+# Diretórios gerados por ferramentas de desenvolvimento
+.idea/
+.vscode/
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Diretórios e arquivos gerados pela aplicação
+data/

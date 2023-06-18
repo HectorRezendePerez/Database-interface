@@ -1,0 +1,121 @@
+<!-- search_results.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultados da Pesquisa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-image: url('https://img2.icarros.com/dbimg/imgadicionalnoticia/7/100614_1');
+            background-size: cover;
+            background-position: unset;
+        }
+        
+        h1 {
+            color: #000000;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .summary {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #ffffffc6;
+            border: 3px solid #000000;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .summary:hover {
+            background-color: #f7f7f7;
+        }
+
+        .details {
+            display: none;
+            margin-left: 20px;
+            padding: 10px;
+            background-color: #f7f7f7;
+            border: 1px solid #ddd;
+            transition: max-height 0.3s;
+        }
+
+        .details.active {
+            max-height: 500px;
+            display: block;
+        }
+
+        .details li {
+            margin-bottom: 5px;
+        }
+
+        .pagination {
+            margin-top: 20px;
+        }
+
+        .pagination a {
+            color: #333;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .pagination a.active {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .pagination a:hover:not(.active) {
+            background-color: #ddd;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var summaries = document.getElementsByClassName("summary");
+            Array.from(summaries).forEach(function(summary) {
+                summary.addEventListener("click", function() {
+                    var details = this.querySelector(".details");
+                    details.classList.toggle("active");
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Resultados da Pesquisa</h1>
+    <ul>
+        {% for result in results %}
+            <li class="summary">
+                <span style="text-transform: uppercase;">{{ result.brand }}</span> {{ result.model }} - ${{ result.price }}
+                <ul class="details">
+                    <li>ID: {{ result.id }}</li>
+                    <li>Ano: {{ result.year }}</li>
+                    <li>Cor: {{ result.color }}</li>
+                    <li>Placa: {{ result.plate }}</li>
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <div class="pagination">
+        {% if current_page > 1 %}
+            <a href="?page={{ current_page - 1 }}">Anterior</a>
+        {% endif %}
+        
+        {% for page in range(1, total_pages + 1) %}
+            {% if page == current_page %}
+                <a href="?page={{ page }}" class="active">{{ page }}</a>
+            {% else %}
+                <a href="?page={{ page }}">{{ page }}</a>
+            {% endif %}
+        {% endfor %}
+    
+        {% if current_page < total_pages %}
+            <a href="?page={{ current_page + 1 }}">Próxima</a>
+        {% endif %}
+    </div>
+</body>
+</html>
